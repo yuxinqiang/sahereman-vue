@@ -15,9 +15,12 @@ module.exports = {
     },
     resolve: {
       alias: {
-        'assets': '@/assets',
         'components': '@/components',
-        'views': '@/views'
+        'content': 'components/content',
+        'common': 'components/common',
+        'assets': '@/assets',
+        'network': '@/network',
+        'views': '@/views',
       }
     }
   }
