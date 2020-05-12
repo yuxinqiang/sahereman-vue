@@ -16,6 +16,9 @@
         <div class="section">
            <page-five/>
         </div>
+        <div class="section" id="sectionFooter">
+           <tab-bar/>
+        </div>
     </full-page>
   </div>
 </template>
@@ -27,18 +30,21 @@ import PageTwo from './childCpmps/page2'
 import PageThree from './childCpmps/page3'
 import PageFour from './childCpmps/page4'
 import PageFive from './childCpmps/page5'
+import TabBar from 'components/common/tabbar/TabBar'
 
 export default {
   name: 'Home',
   data () {
     return {
       options: {
+        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
         afterLoad: this.afterLoad,
+        css3: true,
         scrollOverflow: true,
         scrollBar: false,
-        menu: '#menu'
-      },
-      sectionList: 5
+        menu: '#menu',
+        anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6']
+      }
     }
   },
   components: {
@@ -46,7 +52,8 @@ export default {
     PageTwo,
     PageThree,
     PageFour,
-    PageFive
+    PageFive,
+    TabBar
   }
 }
 </script>
@@ -54,6 +61,15 @@ export default {
 .section {
   div {
     text-align: center;
+  }
+}
+#sectionFooter {
+  display: block!important;
+  width: 100%;
+  color: #797a85;
+  background: #303848;
+  .fp-tableCell {
+    display:block !important;
   }
 }
 </style>
