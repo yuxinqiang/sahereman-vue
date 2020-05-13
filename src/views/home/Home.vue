@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <nav-bar  :localName=activePage />
     <full-page :options="options">
         <div class="section">
            <page-one/>
@@ -31,6 +32,7 @@ import PageThree from './childCpmps/page3'
 import PageFour from './childCpmps/page4'
 import PageFive from './childCpmps/page5'
 import TabBar from 'components/common/tabbar/TabBar'
+import NavBar from 'components/common/navbar/NavBar'
 
 export default {
   name: 'Home',
@@ -44,7 +46,8 @@ export default {
         scrollBar: false,
         menu: '#menu',
         anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6']
-      }
+      },
+      activePage: '首页'
     }
   },
   components: {
@@ -53,7 +56,8 @@ export default {
     PageThree,
     PageFour,
     PageFive,
-    TabBar
+    TabBar,
+    NavBar
   }
 }
 </script>
