@@ -12,6 +12,11 @@ module.exports = {
       port: 3001
       // 自动打开
       // open: true
+      // before (app) {
+      //   app.get('/api/index', (req, res) => {
+      //     res.json(mockData)
+      //   })
+      // }
     },
     resolve: {
       alias: {

@@ -34,6 +34,8 @@ import PageFive from './childCpmps/page5'
 import TabBar from 'components/common/tabbar/TabBar'
 import NavBar from 'components/common/navbar/NavBar'
 
+import { getNews } from 'network/home'
+
 export default {
   name: 'Home',
   data () {
@@ -58,6 +60,20 @@ export default {
     PageFive,
     TabBar,
     NavBar
+  },
+  created () {
+    this._getNews()
+  },
+  methods: {
+    afterLoad (anchorLink, index) {
+      console.log(anchorLink.anchor)
+    },
+    // 网络请求相关方法
+    _getNews () {
+      getNews().then(res => {
+        console.log(res.data)
+      })
+    }
   }
 }
 </script>

@@ -23,21 +23,13 @@
      <div class="menu-lists">
        <ul class="nav-list1">
          <li v-for="item in menuLists" :key="item.index">
-           <router-link  v-if="item.linkHref" :to="{path: item.linkHref}">
-             <span>{{ item.title }}</span>
-           </router-link>
-           <a  v-else href="javascript:void(0)">
-             <span>{{ item.title }}</span>
-           </a>
-           <div v-if="item.childList.length" class="child-menu">
+           <router-link  v-if="item.linkHref" :to="{path: item.linkHref}">{{ item.title }}</router-link>
+           <a  v-else href="javascript:void(0)">{{ item.title }}</a>
+           <div v-show="isHover" v-if="item.childList.length" class="child-menu">
              <ul>
                <li v-for="childItem in item.childList" :key="childItem.index">
-                  <router-link  v-if="childItem.linkHref" :to="{path: item.linkHref}">
-                    <span>{{ childItem.childTitle }}</span>
-                  </router-link>
-                  <a  v-else href="javascript:void(0)">
-                    <span>{{ childItem.childTitle }}</span>
-                  </a>
+                  <router-link  v-if="childItem.linkHref" :to="{path: item.linkHref}">{{ childItem.childTitle }}</router-link>
+                  <a  v-else href="javascript:void(0)">{{ childItem.childTitle }}</a>
                </li>
              </ul>
            </div>
@@ -92,8 +84,13 @@ export default {
         },
         { index: 3, title: '咨询中心', linkHref: '/news', childList: [] },
         { index: 4, title: '联系我们', linkHref: '/about', childList: [] }
-      ]
+      ],
+      isHover: false,
+      isActive: 0
     }
+  },
+  methods: {
+
   }
 }
 </script>
@@ -167,7 +164,33 @@ export default {
       color: #adb1b7;
       justify-content: space-around;
       >li {
+        position: relative;
+        display: flex;
         margin: auto;
+        min-width: 180px;
+        height: 80px;
+        &:before {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          content: '';
+          transition: .2s all linear;
+          border-bottom: 2px solid #2c75d4;
+        }
+        &:hover,
+        &.active {
+          &:before {
+            left: 0;
+            width: 100%;
+          }
+        }
+        a {
+          margin: auto;
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
       }
     }
     .child-menu {
@@ -176,7 +199,7 @@ export default {
       right: 0;
       top: 100%;
       padding: 15px;
-      width: 100%;
+      width: 600px;
       background-color: #fff;
       box-shadow: 0 1px 3px #ccc;
       ul {
